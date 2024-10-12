@@ -1,0 +1,21 @@
+﻿@model Flight
+
+<h2 class="text-primary">Show Details Of Trip</h2>
+<hr />
+
+<div class="card" style="width:200px">
+    <img class="card-img-top" src="/Images/@Model.Image" alt="Card image">
+    <div class="card-body">
+        <p class="card-text"><strong>From :</strong> @Model.From</p>
+        <p class="card-text"><strong>To :</strong> @Model.To</p>
+        <p class="card-text"><strong>DepartureTime :</strong> @Model.DepartureTime</p>
+        <p class="card-text"><strong>ArrivalTime :</strong> @Model.ArrivalTime</p>
+        <p class="card-text"><strong>Price :</strong> @Model.Price</p>
+        <p class="card-text"><strong>TravelDate :</strong> @Model.TravelDate</p>
+        <p class="card-text"><strong>Available Seats :</strong> @Model.AvailableSeats</p>
+    </div>
+</div>
+<hr />
+<form action="/Flight/Index" method="post">
+    <button style="background-color: blue; color: white;">GO To List</button>
+</form>

@@ -1,0 +1,52 @@
+﻿@model List<Booking>
+
+<h1 style="color: blue;"><strong>My Bookings</strong></h1>
+
+
+<hr />
+
+@if (Model == null || !Model.Any())
+{
+    <p><strong> No Bookings Available Until Now</strong> </p>
+}
+else{
+<table class="table">
+    <thead>
+        <tr>
+            <th><strong>From</strong></th>
+            <th><strong>To</strong></th>
+            <th><strong>DepartureTime</strong></th>
+            <th><strong>ArrivalTime</strong></th>
+            <th><strong>Price</strong></th>
+            <th><strong>Booking Date</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.Flight.From</td>
+                <td>@booking.Flight.To</td>
+                <td>@booking.Flight.DepartureTime</td>
+                <td>@booking.Flight.ArrivalTime</td>
+                <td>@booking.Flight.Price</td>
+                <td>@booking.BookingDate.ToString("g")</td>
+
+                <td>
+                    <form action="/Payment/Pay" method="post" style="display:inline;">
+                        <input type="hidden" name="tripid" value="@booking.FlightId" />
+                        <input type="hidden" name="amount" value="@booking.Flight.Price" />
+                        <button class="btn-primary"><strong>Pay</strong></button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/Booking/Delete/@booking.FlightId" method="post">
+                        <button class="btn-danger"><strong>Cancel</strong></button>
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

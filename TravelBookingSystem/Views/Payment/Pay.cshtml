@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Payment";
+}
+<style>
+    h2 {
+        color: blue;
+    }
+</style>
+<h2 style="color: blue;"><strong>Payment</strong></h2>
+
+
+<p><strong>Amount to Pay:</strong> $@ViewBag.Amount</p>
+
+<form method="post" action="ProcessPayment" style="max-width: 400px; margin: 0 auto;">
+    
+    <input type="hidden" name="tripid" value="@ViewBag.Tripid" />
+    <input type="hidden" name="userid" value="@ViewBag.Userid" />
+    <input type="hidden" name="amount" value="@ViewBag.Amount" />
+    <div style="margin-bottom: 15px;">
+        <label for="cardName" style="display: block; margin-bottom: 5px;"><strong>Cardholder Name</strong></label>
+        <input type="text" id="cardName" name="cardName" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="cardNumber" style="display: block; margin-bottom: 5px;"><strong>Card Number</strong></label>
+        <input type="text" id="cardNumber" name="cardNumber" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="expMonth" style="display: block; margin-bottom: 5px;"><strong>Expiration Month</strong></label>
+        <input type="text" id="expMonth" name="expMonth" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="expYear" style="display: block; margin-bottom: 5px;"><strong>Expiration Year</strong></label>
+        <input type="text" id="expYear" name="expYear" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="cvc" style="display: block; margin-bottom: 5px;"><strong>CVC</strong></label>
+        <input type="text" id="cvc" name="cvc" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+    </div>
+
+    <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">ادفع الآن</button>
+</form>
+
+

@@ -1,0 +1,95 @@
+﻿@model List<Flight>
+<!-- نموذج البحث -->
+<form action="/Flight/Search" method="post">
+        <label for="from">From:</label>
+        <select name="from" id="from">
+            <option value="">Select From</option>
+            @foreach (var location in ViewBag.FromLocations)
+            {
+                <option value="@location">@location</option>
+            }
+        </select>
+
+        <label for="to">To:</label>
+        <select name="to" id="to">
+            <option value="">Select To</option>
+            @foreach (var location in ViewBag.ToLocations)
+            {
+                <option value="@location">@location</option>
+            }
+        </select>
+    <input type="submit" value="Search" class="btn-btn-primary" style="background-color: blue; color: white;" />
+</form>
+<br/>
+<hr/>
+<h2 class="text-primary">Show All Trips</h2>
+<style>
+    .product-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* تغيير عدد الأعمدة وحجم العناصر */
+        gap: 15px; /* يمكنك تعديل المسافة بين العناصر حسب الحاجة */
+    }
+
+    .product-item {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .thumbnail {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+        .thumbnail img {
+            width: 100%;
+            height: 200px; /* تحديد ارتفاع ثابت للصورة */
+            object-fit: cover; /* ضمان تغطية الصورة بالكامل */
+        }
+
+    .caption {
+        padding: 10px;
+    }
+</style>
+<div class="product-container">
+    @foreach (var item in Model)
+    {
+
+        <div class="product-item">
+            <div class="thumbnail">
+                <img src="/Images/@item.Image" alt="" />
+            </div>
+            <div class="caption">
+                <h3 class="pull-right">@item.Price.ToString("c")</h3>
+                <h3>
+                    <div>
+                    <a>From : @item.From</a>
+                    </div>
+                    <div>
+                    <a>To : @item.To</a>
+                    </div>
+                </h3>
+                <td>
+                    <div style="display: flex; gap: 10px;">
+                        <form action="/Flight/Details/@item.Id" method="post">
+                            <button type="submit" style="background-color: blue; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Details</button>
+                        </form>
+                        <form action="/Booking/Book?tripid=@item.Id&userid=@ViewBag.UserId" method="post">
+                            <button type="submit" style="background-color: green; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Book</button>
+                        </form>
+                    </div>
+                </td>
+
+                
+                    
+
+                
+            </div>
+        </div>
+    }
+</div>
